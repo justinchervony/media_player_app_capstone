@@ -8,6 +8,6 @@ class Song(models.Model):
     artist = models.CharField(max_length=255)
     album = models.CharField(max_length=255)
     genre = models.CharField(max_length=255)
-    album_cover_url = models.FilePathField
-    audio_file_url = models.FilePathField
+    album_cover_url = models.FileField(upload_to='album_covers/', blank=True)
+    audio_file_url = models.FileField(upload_to='audio_files/', blank=True)
     users = models.ManyToManyField(User)

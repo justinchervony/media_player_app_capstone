@@ -129,3 +129,6 @@ dmypy.json
 
 # Local Settings
 drf_jwt_backend/local_settings.py
+
+album_covers/
+audio_files/
