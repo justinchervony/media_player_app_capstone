@@ -35,9 +35,17 @@ def song_detail(request, pk):
         song.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def user_songs(request, user_id):
     if request.method == 'GET':
         songs = Song.objects.filter(user__id=user_id)
         serializer = SongSerializer(songs, many=True)
         return Response(serializer.data)
+
+@api_view(['POST'])
+def new_song(request):
+    if request.method == 'POST':
+        serializer = SongSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

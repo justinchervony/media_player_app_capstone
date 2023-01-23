@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.user_songs),
     path('all/', views.song_list),
     path('<int:pk>', views.song_detail),
+    path('new/', views.new_song)
 ]
