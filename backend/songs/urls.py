@@ -3,8 +3,8 @@ from songs import views
 
 
 urlpatterns = [
-    path('', views.user_songs),
-    path('all/', views.song_list),
+    path('user/<int:user_id>', views.user_songs),
+    path('library/', views.song_list),
     path('<int:pk>', views.song_detail),
     path('new/', views.new_song)
 ]

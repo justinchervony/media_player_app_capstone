@@ -38,7 +38,7 @@ def song_detail(request, pk):
 @api_view(['GET', 'POST'])
 def user_songs(request, user_id):
     if request.method == 'GET':
-        songs = Song.objects.filter(user__id=user_id)
+        songs = Song.objects.filter(users=user_id)
         serializer = SongSerializer(songs, many=True)
         return Response(serializer.data)
 
