@@ -22,11 +22,12 @@ function App() {
         <Route
           path="/"
           element={
-            <PrivateRoute>
+            
               <HomePage />
-            </PrivateRoute>
+            
           }
         />
+        {/* <Route path="/user/:user_id" element={<PrivateRoute><UserPage /></PrivateRoute>} /> */}
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
