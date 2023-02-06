@@ -19,6 +19,7 @@ const HomePage = () => {
           //   Authorization: "Bearer " + token,
           // },
         });
+        console.log("Songs",response.data)
         setSongs(response.data);
       } catch (error) {
         console.log(error.response.data);
@@ -29,11 +30,11 @@ const HomePage = () => {
   return (
     <div className="container">
       <h1>Home Page for {user.username}!</h1>
-      {songs &&
+      {songs.length>0 &&
         songs.map((song) => (
           <p key={song.id}>
-            <img src={'../../..' + song.album_cover_url} />
-            {song.title} {song.artist} {song.album} {song.genre} {song.album_cover_url} song.audio_file_url
+            <img src={'http://127.0.0.1:8000/' + song.album_cover_url} />
+            {song.title} {song.artist} {song.album} {song.genre} song.audio_file_url
           </p>
         ))}
     </div>
