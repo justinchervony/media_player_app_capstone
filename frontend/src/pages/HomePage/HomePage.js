@@ -1,8 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import DisplayAllSongs from "../../components/DisplayAllSongs";
+import "./HomePage.css";
 
 import axios from "axios";
+import CreateSong from "../../components/CreateSong";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -27,16 +30,21 @@ const HomePage = () => {
     };
     fetchSongs();
   }, [token]);
+
+  function addNewSong(song){
+    let tempSongs = [...songs, song];
+    setSongs(tempSongs);
+  }
+
   return (
     <div className="container">
       <h1>Home Page for {user.username}!</h1>
-      {songs.length>0 &&
-        songs.map((song) => (
-          <p key={song.id}>
-            <img src={'http://127.0.0.1:8000/' + song.album_cover_url} />
-            {song.title} {song.artist} {song.album} {song.genre} song.audio_file_url
-          </p>
-        ))}
+      <div>
+        <CreateSong />
+      </div>
+      <div>
+        <DisplayAllSongs songCollection={songs} />
+      </div>
     </div>
   );
 };

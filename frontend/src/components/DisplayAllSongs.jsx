@@ -10,23 +10,22 @@ function searchSong(title, artist){
     window.open(`https://www.youtube.com/results?search_query=${title}+${artist}`)
 }
 
-function DisplaySongs(props){
+function DisplayAllSongs(props){
     let tempArray = props.songCollection
     return (
         <body className="songCollection">
             {tempArray.map((song, index) => {
                 return (
-                    <div className="songGrid">
-                        <div className="songBox">
+                    <div className="songGrid" >
+                        <div className="songBox" style={{backgroundImage: `url(http://127.0.0.1:8000/${song.album_cover_url})`}}>
                             <div>
                                 <ul><strong>Title: </strong>{song.title}</ul>
                                 <ul><strong>Artist: </strong>{song.artist}</ul>
                                 <ul><strong>Album: </strong>{song.album}</ul>
                                 <ul><strong>Genre: </strong>{song.genre}</ul>
-                                <ul><strong>Release Date: </strong>{song.release_date}</ul>
                             </div>
                             <div>
-                                <button type="button" onClick={() => searchSong(song.title, song.artist)}>Search on YouTube</button>
+                                <button type="button" onClick={() => searchSong(song.title, song.artist)}>Edit Song</button>
                             </div>
                             <div>
                                 <button className="deleteButton" type="button" value={song.id} onClick={(event) => deleteSong(event.target.value)}>Delete Song</button>
@@ -39,4 +38,4 @@ function DisplaySongs(props){
     );
 }
 
-export default DisplaySongs;
+export default DisplayAllSongs;
