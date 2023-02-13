@@ -17,7 +17,7 @@ function DisplayAllSongs(props){
             {tempArray.map((song, index) => {
                 return (
                     <div className="songGrid" >
-                        <div className="songBox" style={{backgroundImage: `url(http://127.0.0.1:8000/${song.album_cover_url})`}}>
+                        <div className="songBox" style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://127.0.0.1:8000/${song.album_cover_url})`}}>
                             <div>
                                 <ul><strong>Title: </strong>{song.title}</ul>
                                 <ul><strong>Artist: </strong>{song.artist}</ul>
