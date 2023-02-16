@@ -1,16 +1,22 @@
 import axios from "axios";
 
 
-function deleteSong(id){
-    axios.delete(`http://127.0.0.1:8000/api/songs/${id}`);
-    window.location.reload(true);
-}
-
-function searchSong(title, artist){
-    window.open(`https://www.youtube.com/results?search_query=${title}+${artist}`)
-}
 
 function DisplayAllSongs(props){
+    
+    async function deleteSong(id){
+        if(window.confirm("Are you sure you want to delete this song?")) {
+            await axios.delete(`http://127.0.0.1:8000/api/songs/${id}`);
+            props.getSongs()
+        }
+        else {
+        }
+        
+    }
+
+    function searchSong(title, artist){
+        window.open(`https://www.youtube.com/results?search_query=${title}+${artist}`)
+    }
     let tempArray = props.songCollection
     return (
         <body className="songCollection">

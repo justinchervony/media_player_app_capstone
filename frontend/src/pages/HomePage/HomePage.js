@@ -15,22 +15,22 @@ const HomePage = () => {
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
-    const fetchSongs = async () => {
-      try {
-        let response = await axios.get("http://127.0.0.1:8000/api/songs/library/", {
-          // headers: {
-          //   Authorization: "Bearer " + token,
-          // },
-        });
-        console.log("Songs",response.data)
-        setSongs(response.data);
-      } catch (error) {
-        console.log(error.response.data);
-      }
-    };
     fetchSongs();
   }, [token]);
 
+  const fetchSongs = async () => {
+    try {
+      let response = await axios.get("http://127.0.0.1:8000/api/songs/library/", {
+        // headers: {
+        //   Authorization: "Bearer " + token,
+        // },
+      });
+      console.log("Songs",response.data)
+      setSongs(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
   function addNewSong(song){
     let tempSongs = [...songs, song];
     setSongs(tempSongs);
@@ -40,10 +40,10 @@ const HomePage = () => {
     <div className="container">
       <h1>Home Page for {user.username}!</h1>
       <div>
-        <CreateSong />
+        <CreateSong getSongs={fetchSongs}/>
       </div>
       <div>
-        <DisplayAllSongs songCollection={songs} />
+        <DisplayAllSongs songCollection={songs} getSongs={fetchSongs}/>
       </div>
     </div>
   );
