@@ -13,17 +13,6 @@ const CreateSong = (props) => {
     const [album_image, setAlbumImage] = useState();
     const [audio, setAudio] = useState();
 
-    // const onChangePicture = e => {
-    //     setAlbumImage(e.target.files[0]);
-    //     console.log('testpicture', album_image);
-    //     window.open(album_image);
-    // };
-
-    // const onChangeAudio = e => {
-    //     setAudio(e.target.files[0]);
-    //     console.log('testaudio', audio);
-    // };
-
 
     async function createSong(event){
         event.preventDefault()
@@ -37,14 +26,6 @@ const CreateSong = (props) => {
         formData.append('audio_file_url', audio);
 
         await axios.post('http://127.0.0.1:8000/api/songs/new/', formData, {headers: {Authorization: "Bearer " + token}});
-        // const inputSong = await axios.post('http://127.0.0.1:8000/api/songs/new/', {
-        //     title: title,
-        //     artist: artist,
-        //     album: album,
-        //     genre: genre,
-        // });
-        // inputSong.append('test', album_image)
-        // console.log(inputSong);
         props.getSongs()
       }
 

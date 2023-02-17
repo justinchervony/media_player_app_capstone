@@ -21,17 +21,21 @@ def song_list(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET', 'PATCH', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def song_detail(request, pk):
     song = get_object_or_404(Song, pk=pk)
     if request.method == 'GET':
         serializer = SongSerializer(song)
         return Response(serializer.data)
-    elif request.method == 'PUT':
-        serializer = SongSerializer(song, data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
+    elif request.method == 'PATCH':
+        serializer = SongSerializer(song, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    
     elif request.method == 'DELETE':
         song.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -46,18 +50,10 @@ def user_songs(request, user_id):
 @api_view(['POST'])
 def new_song(request):
     if request.method == 'POST':
-        # potentialSongTocreate = Song.objects.filter(title = request.data['title'], artist = request.data['artist'])
-        # if potentialSongTocreate:
-        #     userForSong = User.objects.get(pk=request.user.id)
-        #     potentialSongTocreate.users.add(userForSong)
-        #     potentialSongTocreate.save()
-        # else:
         song1 = Song(title=request.data['title'], artist= request.data['artist'], album=request.data['album'], genre=request.data['genre'],album_cover_url=request.data['album_cover_url'],audio_file_url=request.data['audio_file_url'])
         song1.save()
         userForSong = User.objects.get(pk=request.user.id)
         song1.users.add(userForSong)
         song1.save()
-        # serializer = SongSerializer(data=request.data)
-        # serializer.is_valid(raise_exception=True)
-        # serializer.save()
+
         return Response("created", status=status.HTTP_201_CREATED)
