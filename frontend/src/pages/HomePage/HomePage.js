@@ -22,7 +22,7 @@ const HomePage = () => {
 
   const fetchSongs = async () => {
     try {
-      let response = await axios.get("http://127.0.0.1:8000/api/songs/library/", {
+      let response = await axios.get("http://127.0.0.1:8000/api/songs/song_library/", {
         // headers: {
         //   Authorization: "Bearer " + token,
         // },
@@ -46,7 +46,7 @@ const HomePage = () => {
       </div>
         <EditSong editSong = {editSong} songCollection={songs} getSongs={fetchSongs}/>
       <div>
-        <DisplayAllSongs setEditSong={setEditSong} songCollection={songs} getSongs={fetchSongs}/>
+        <DisplayAllSongs setEditSong={setEditSong} songCollection={songs} getSongs={fetchSongs} userPage={true}/>
       </div>
     </div>
   );

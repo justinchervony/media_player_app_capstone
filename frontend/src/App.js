@@ -6,6 +6,7 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import LibraryPage from "./pages/LibraryPage/LibraryPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -28,6 +29,7 @@ function App() {
           }
         />
         {/* <Route path="/user/:user_id" element={<PrivateRoute><UserPage /></PrivateRoute>} /> */}
+        <Route path="/library" element={<LibraryPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>

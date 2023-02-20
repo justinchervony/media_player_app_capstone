@@ -8,6 +8,10 @@ li {
   font-size: 1.25rem;
 }
 
+.links {
+  justify-content: start;
+}
+
 .navBar {
   background: steelblue;
   box-shadow: 4px 2px 5px gray;
