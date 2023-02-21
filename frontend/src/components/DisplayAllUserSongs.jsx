@@ -5,7 +5,7 @@ import useAuth from "../hooks/useAuth";
 
 
 
-function DisplayAllSongs(props){
+function DisplayAllUserSongs(props){
     const [userInput, setUserInput] = useState('');
     const isUserPage = props.userPage;
     const [user, token] = useAuth();
@@ -38,11 +38,11 @@ function DisplayAllSongs(props){
         song.users.append(userForSong)
     }
 
-    let tempArray = props.songCollection
+    let tempArray = props.userSongCollection
     return (<>
         <div> Search all songs </div>
         <input type= "text" value={userInput} onChange={e =>setUserInput(e.target.value)}  />
-        <body className="songCollection">
+        <div className="userSongCollection">
             {tempArray.filter(el=> (
                 el.title.toLowerCase().includes(userInput.toLowerCase()) || 
                 el.artist.toLowerCase().includes(userInput.toLowerCase()) ||
@@ -64,18 +64,19 @@ function DisplayAllSongs(props){
                                     : <button type="button" onClick={() => addUserSong(song)}>Add Song</button>
                                 }
                             </div>
-                            {/* <div>
+                            <div>
                                 {props.userPage
                                     ? <button className="deleteButton" type="button" value={song.id} onClick={(event) => deleteSong(event.target.value)}>Delete Song</button>
+                                    : 'Nothing Here'
                                 }
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                 );
             })}
-        </body>
+        </div>
     </>
     );
 }
 
-export default DisplayAllSongs;
+export default DisplayAllUserSongs;

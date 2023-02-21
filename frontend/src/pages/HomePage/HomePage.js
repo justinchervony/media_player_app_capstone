@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import DisplayAllSongs from "../../components/DisplayAllSongs";
+import DisplayAllUserSongs from "../../components/DisplayAllUserSongs";
 import "./HomePage.css";
 
 import axios from "axios";
@@ -14,21 +14,40 @@ const HomePage = () => {
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
   const [user, token] = useAuth();
   const [songs, setSongs] = useState([]);
+  const [userSongs, setUserSongs] = useState([]);
   const [editSong, setEditSong] = useState({});
 
+  // useEffect(() => {
+  //   fetchSongs();
+  // }, [token]);
+
   useEffect(() => {
-    fetchSongs();
+    fetchUserSongs();
   }, [token]);
 
-  const fetchSongs = async () => {
+  // const fetchSongs = async () => {
+  //   try {
+  //     let response = await axios.get("http://127.0.0.1:8000/api/songs/song_library/", {
+  //       // headers: {
+  //       //   Authorization: "Bearer " + token,
+  //       // },
+  //     });
+  //     console.log("Songs",response.data)
+  //     setSongs(response.data);
+  //   } catch (error) {
+  //     console.log(error.response.data);
+  //   }
+  // };
+
+  const fetchUserSongs = async () => {
     try {
-      let response = await axios.get("http://127.0.0.1:8000/api/songs/song_library/", {
-        // headers: {
-        //   Authorization: "Bearer " + token,
-        // },
+      let response = await axios.get(`http://127.0.0.1:8000/api/songs/user/${user.id}/`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
       });
       console.log("Songs",response.data)
-      setSongs(response.data);
+      setUserSongs(response.data);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -42,11 +61,11 @@ const HomePage = () => {
     <div className="container">
       <h1>Home Page for {user.username}!</h1>
       <div>
-        <CreateSong getSongs={fetchSongs}/>
+        <CreateSong getSongs={fetchUserSongs}/>
       </div>
-        <EditSong editSong = {editSong} songCollection={songs} getSongs={fetchSongs}/>
+        <EditSong editSong = {editSong} songCollection={songs} getSongs={fetchUserSongs}/>
       <div>
-        <DisplayAllSongs setEditSong={setEditSong} songCollection={songs} getSongs={fetchSongs} userPage={true}/>
+        <DisplayAllUserSongs setEditSong={setEditSong} userSongCollection={userSongs} getSongs={fetchUserSongs} userPage={true}/>
       </div>
     </div>
   );
