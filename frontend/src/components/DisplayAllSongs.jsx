@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, {useEffect, useState} from 'react';
 import useAuth from "../hooks/useAuth";
+import "./Component.css";
 
 
 
@@ -11,18 +12,6 @@ function DisplayAllSongs(props){
     const [user, token] = useAuth();
     const [usersSongs,setUsersSongs] = useState()
     
-    // useEffect(()=>{
-    //     let filteredSongs = props.songCollection.filter((el)=>{
-    //         let usersSongs = el.users.filter((e)=>{
-    //             if(e.id == user.id){
-    //                 return true
-    //             }
-    //         })
-    //         return usersSongs
-    //     })
-    //     debugger
-    //     setUsersSongs(filteredSongs)
-    // },[props.songCollection])
 
     async function deleteSong(id){
         if(window.confirm("Are you sure you want to delete this song?")) {
@@ -57,9 +46,9 @@ function DisplayAllSongs(props){
 
     let tempArray = props.songCollection
     return (<>
-        <div> Search all songs </div>
+        <div className="searchTitle"> Search all songs </div>
         <input type= "text" value={userInput} onChange={e =>setUserInput(e.target.value)}  />
-        <body className="songCollection">
+        <div className="songCollection">
             {tempArray.filter(el=> (
                 el.title.toLowerCase().includes(userInput.toLowerCase()) || 
                 el.artist.toLowerCase().includes(userInput.toLowerCase()) ||
@@ -90,7 +79,7 @@ function DisplayAllSongs(props){
                     </div>
                 );
             })}
-        </body>
+        </div>
     </>
     );
 }

@@ -18,8 +18,9 @@ const RegisterPage = () => {
 
   return (
     <div className="container">
+      <h2>User Registration</h2>
       <form className="form" onSubmit={handleSubmit}>
-        <label>
+        <label style={{ fontSize: "20px" }}>
           Username:{" "}
           <input
             type="text"
@@ -28,7 +29,7 @@ const RegisterPage = () => {
             onChange={handleInputChange}
           />
         </label>
-        <label>
+        <label style={{ fontSize: "20px" }}>
           First Name:{" "}
           <input
             type="text"
@@ -37,7 +38,7 @@ const RegisterPage = () => {
             onChange={handleInputChange}
           />
         </label>
-        <label>
+        <label style={{ fontSize: "20px" }}>
           Last Name:{" "}
           <input
             type="text"
@@ -46,7 +47,7 @@ const RegisterPage = () => {
             onChange={handleInputChange}
           />
         </label>
-        <label>
+        <label style={{ fontSize: "20px" }}>
           Email:{" "}
           <input
             type="text"
@@ -55,16 +56,16 @@ const RegisterPage = () => {
             onChange={handleInputChange}
           />
         </label>
-        <label>
+        <label style={{ fontSize: "20px" }}>
           Password:{" "}
           <input
             type="text"
             name="password"
             value={formData.password}
-            onChange={handleInputChange}
+            onChange={handleInputChange} 
           />
         </label>
-        <p style={{ fontSize: "12px" }}>
+        <p style={{ fontSize: "16px" }}>
           NOTE: Make this an uncommon password with characters, numbers, and
           special characters!
         </p>

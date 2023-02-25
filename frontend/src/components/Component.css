@@ -1,0 +1,24 @@
+.submitEditButton {
+    margin-top: 8rem;
+}
+
+.submitCreateButton {
+    margin-top: 1rem;
+}
+
+h5 {
+    padding-top: .5rem;
+}
+
+.searchTitle {
+    padding-top: 2rem;
+}
+
+.songCollection, .userSongCollection {
+    padding-top: 2rem;
+}
+
+.songBoxOptions button {
+    margin: .2rem;
+}
+

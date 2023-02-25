@@ -33,7 +33,7 @@ const LibraryPage = () => {
     return (
         <div className="container">
           <h1>Media Library Page</h1>
-          <div>
+          <div className="displaySongsComponent">
             <DisplayAllSongs setEditSong={setEditSong} songCollection={songs} getSongs={fetchSongs} userPage={false}/>
           </div>
         </div>

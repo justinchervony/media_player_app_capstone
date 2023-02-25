@@ -13,7 +13,7 @@ li {
 }
 
 .navBar {
-  background: steelblue;
+  background: rgb(110, 53, 53);
   box-shadow: 4px 2px 5px gray;
   color: white;
   margin-bottom: 2rem;

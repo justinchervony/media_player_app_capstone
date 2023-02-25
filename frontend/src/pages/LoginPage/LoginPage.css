@@ -1,3 +1,21 @@
 .error {
   color: red;
 }
+
+.container {
+  padding: 5rem;
+}
+
+h2 {
+  padding-bottom: 2rem;
+}
+
+.linkText {
+  color: whitesmoke;
+  font-size: large;
+  }
+  
+.linkText:hover {
+    font-weight: bold;
+    color: black;
+  }

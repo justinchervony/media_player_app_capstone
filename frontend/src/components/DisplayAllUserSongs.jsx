@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, {useEffect, useState} from 'react';
 import useAuth from "../hooks/useAuth";
+import "./Component.css";
 
 
 
@@ -31,7 +32,7 @@ function DisplayAllUserSongs(props){
 
     let tempArray = props.userSongCollection
     return (<>
-        <div> Search all songs </div>
+        <div className="searchTitle"> Search all songs </div>
         <input type= "text" value={userInput} onChange={e =>setUserInput(e.target.value)}  />
         <div className="userSongCollection">
             {tempArray.filter(el=> (
@@ -43,7 +44,7 @@ function DisplayAllUserSongs(props){
                 return (
                     <div className="songGrid" >
                         <div className="songBox" style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://127.0.0.1:8000/${song.album_cover_url})`}}>
-                            <div>
+                            <div className="songBoxDetails">
                                 <ul><strong>Title: </strong>{song.title}</ul>
                                 <ul><strong>Artist: </strong>{song.artist}</ul>
                                 <ul><strong>Album: </strong>{song.album}</ul>

@@ -63,7 +63,6 @@ const CreateSong = (props) => {
           onChange={(event) => setGenre(event.target.value)}
         />
       </div>
-      <br></br>
       <div>
         <h5>Album Image </h5>
         <input
@@ -80,9 +79,8 @@ const CreateSong = (props) => {
           onChange={(event) => setAudio(event.target.files[0])}
         />
       </div>
-      <br></br>
       <div>
-        <button type="submit" className="submitButton">
+        <button type="submit" className="submitCreateButton">
           Create
         </button>
       </div>

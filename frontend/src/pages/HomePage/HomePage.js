@@ -65,7 +65,7 @@ const HomePage = () => {
           <EditSong editSong = {editSong} songCollection={songs} getSongs={fetchUserSongs}/>
         </div>
       </div>
-      <div>
+      <div className="displaySongsComponent">
         <DisplayAllUserSongs setEditSong={setEditSong} userSongCollection={userSongs} getSongs={fetchUserSongs} userPage={true} 
         getSelectedSong={getSelectedSong} />
       </div>

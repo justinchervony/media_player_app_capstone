@@ -1,6 +1,7 @@
 import { useState, useEffect, setState } from "react";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
+import "./Component.css";
 
 const EditSong = (props) => {
   const [user, token] = useAuth();
@@ -82,13 +83,8 @@ const EditSong = (props) => {
           onChange={(event) => setGenre(event.target.value)}
         />
       </div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
       <div>
-        <button type="submit" className="submitButton">
+        <button type="submit" className="submitEditButton">
           Submit Edit
         </button>
       </div>
