@@ -11,18 +11,6 @@ function DisplayAllUserSongs(props){
     const [user, token] = useAuth();
     const [usersSongs,setUsersSongs] = useState()
     
-    // useEffect(()=>{
-    //     let filteredSongs = props.songCollection.filter((el)=>{
-    //         let usersSongs = el.users.filter((e)=>{
-    //             if(e.id == user.id){
-    //                 return true
-    //             }
-    //         })
-    //         return usersSongs
-    //     })
-    //     debugger
-    //     setUsersSongs(filteredSongs)
-    // },[props.songCollection])
 
     async function deleteSong(id){
         if(window.confirm("Are you sure you want to delete this song?")) {
@@ -39,10 +27,7 @@ function DisplayAllUserSongs(props){
         }   
     }
 
-    // function addUserSong(song){
-    //     const userForSong = user.id
-    //     song.users.append(userForSong)
-    // }
+
 
     let tempArray = props.userSongCollection
     return (<>
@@ -64,17 +49,10 @@ function DisplayAllUserSongs(props){
                                 <ul><strong>Album: </strong>{song.album}</ul>
                                 <ul><strong>Genre: </strong>{song.genre}</ul>
                             </div>
-                            <div>
-                                {props.userPage
-                                    ? <button type="button" onClick={() => props.setEditSong(song)}>Edit Song</button>
-                                    : 'Nothing Here'
-                                }
-                            </div>
-                            <div>
-                                {props.userPage
-                                    ? <button className="deleteButton" type="button" value={song.id} onClick={(event) => deleteSong(event.target.value)}>Delete Song</button>
-                                    : 'Nothing Here'
-                                }
+                            <div className="songBoxOptions">
+                                <button type="button" onClick={() => props.getSelectedSong(song)}>Play</button>
+                                <button type="button" onClick={() => props.setEditSong(song)}>Edit</button>
+                                <button className="deleteButton" type="button" value={song.id} onClick={(event) => deleteSong(event.target.value)}>Delete</button>
                             </div>
                         </div>
                     </div>

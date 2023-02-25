@@ -7,6 +7,7 @@ import "./HomePage.css";
 import axios from "axios";
 import CreateSong from "../../components/CreateSong";
 import EditSong from "../../components/EditSong";
+import Footer from "../../components/Footer/Footer";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -16,28 +17,13 @@ const HomePage = () => {
   const [songs, setSongs] = useState([]);
   const [userSongs, setUserSongs] = useState([]);
   const [editSong, setEditSong] = useState({});
+  const [selectedSong, setSelectedSong] = useState([]);
 
-  // useEffect(() => {
-  //   fetchSongs();
-  // }, [token]);
 
   useEffect(() => {
     fetchUserSongs();
   }, [token]);
 
-  // const fetchSongs = async () => {
-  //   try {
-  //     let response = await axios.get("http://127.0.0.1:8000/api/songs/song_library/", {
-  //       // headers: {
-  //       //   Authorization: "Bearer " + token,
-  //       // },
-  //     });
-  //     console.log("Songs",response.data)
-  //     setSongs(response.data);
-  //   } catch (error) {
-  //     console.log(error.response.data);
-  //   }
-  // };
 
   const fetchUserSongs = async () => {
     try {
@@ -52,6 +38,17 @@ const HomePage = () => {
       console.log(error.response.data);
     }
   };
+
+  const getSelectedSong = async (song) => {
+    let response = await axios.get(`http://127.0.0.1:8000/api/songs/${song.id}`, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+    console.log("Current Song", response.data.audio_file_url)
+    setSelectedSong('http://127.0.0.1:8000/' + response.data.audio_file_url);
+  }
+
   function addNewSong(song){
     let tempSongs = [...songs, song];
     setSongs(tempSongs);
@@ -69,8 +66,10 @@ const HomePage = () => {
         </div>
       </div>
       <div>
-        <DisplayAllUserSongs setEditSong={setEditSong} userSongCollection={userSongs} getSongs={fetchUserSongs} userPage={true}/>
+        <DisplayAllUserSongs setEditSong={setEditSong} userSongCollection={userSongs} getSongs={fetchUserSongs} userPage={true} 
+        getSelectedSong={getSelectedSong} />
       </div>
+      <Footer selectedSong={selectedSong} userSongCollection={userSongs} />
     </div>
   );
 };
