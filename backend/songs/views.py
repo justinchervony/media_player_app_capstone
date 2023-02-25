@@ -57,3 +57,12 @@ def new_song(request):
         song1.save()
 
         return Response("created", status=status.HTTP_201_CREATED)
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def add_song(request, song_id):
+    song = get_object_or_404(Song, pk = song_id)
+    userForSong = User.objects.get(pk=request.user.id)
+    song.users.add(userForSong)
+    song.save()
+    return Response(status=status.HTTP_201_CREATED)

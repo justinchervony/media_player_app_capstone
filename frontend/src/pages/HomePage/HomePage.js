@@ -60,10 +60,14 @@ const HomePage = () => {
   return (
     <div className="container">
       <h1>Home Page for {user.username}!</h1>
-      <div>
-        <CreateSong getSongs={fetchUserSongs}/>
+      <div className="songFields">
+        <div>
+          <CreateSong getSongs={fetchUserSongs}/>
+        </div>
+        <div>
+          <EditSong editSong = {editSong} songCollection={songs} getSongs={fetchUserSongs}/>
+        </div>
       </div>
-        <EditSong editSong = {editSong} songCollection={songs} getSongs={fetchUserSongs}/>
       <div>
         <DisplayAllUserSongs setEditSong={setEditSong} userSongCollection={userSongs} getSongs={fetchUserSongs} userPage={true}/>
       </div>

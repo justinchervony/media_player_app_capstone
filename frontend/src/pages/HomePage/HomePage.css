@@ -5,6 +5,13 @@
     text-align: center;
 }
 
+.songFields {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .userSongCollection {
     display: flex;
     flex-wrap: wrap;
@@ -21,8 +28,8 @@
     display: flex;
     justify-content: center;
     margin: .5rem;
-    height: 250px;
-    width: 250px;
+    height: 300px;
+    width: 300px;
   }
   
   .songBox{

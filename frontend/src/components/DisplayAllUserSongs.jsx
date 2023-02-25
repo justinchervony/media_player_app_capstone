@@ -26,17 +26,23 @@ function DisplayAllUserSongs(props){
 
     async function deleteSong(id){
         if(window.confirm("Are you sure you want to delete this song?")) {
-            await axios.delete(`http://127.0.0.1:8000/api/songs/${id}`);
+            await axios.delete(`http://127.0.0.1:8000/api/songs/${id}`,
+            {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            }   
+            );
             props.getSongs()
         }
         else {
         }   
     }
 
-    function addUserSong(song){
-        const userForSong = user.id
-        song.users.append(userForSong)
-    }
+    // function addUserSong(song){
+    //     const userForSong = user.id
+    //     song.users.append(userForSong)
+    // }
 
     let tempArray = props.userSongCollection
     return (<>
@@ -61,7 +67,7 @@ function DisplayAllUserSongs(props){
                             <div>
                                 {props.userPage
                                     ? <button type="button" onClick={() => props.setEditSong(song)}>Edit Song</button>
-                                    : <button type="button" onClick={() => addUserSong(song)}>Add Song</button>
+                                    : 'Nothing Here'
                                 }
                             </div>
                             <div>

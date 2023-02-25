@@ -33,9 +33,26 @@ function DisplayAllSongs(props){
         }   
     }
 
-    function addUserSong(song){
-        const userForSong = user.id
-        song.users.append(userForSong)
+    async function addUserSong(song){
+        // debugger
+        if (song.users.includes(user)){
+            window.alert('You already have this song in your library!')
+        }
+        else
+            try {
+                let response = await axios.put(`http://127.0.0.1:8000/api/songs/add/${song.id}/`,
+                    {},
+                    {
+                        headers: {
+                            Authorization: "Bearer " + token,
+                        },
+                    }    
+                );
+                window.alert('Song added to your library!');
+            }   catch (er) {
+                console.log(er);
+            }
+
     }
 
     let tempArray = props.songCollection
