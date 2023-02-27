@@ -67,7 +67,7 @@ const CreateSong = (props) => {
         <h5>Album Image </h5>
         <input
           type={"file"}
-          accept=".png, .jpeg"
+          accept=".png, .jpg"
           onChange={(event) => setAlbumImage(event.target.files[0])}
         />
       </div>

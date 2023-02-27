@@ -1,6 +1,6 @@
 .container {
     margin: 0 auto;
-    max-width: 990px;
+    max-width: 120vh;
     overflow: auto;
     text-align: center;
 }
@@ -20,7 +20,7 @@
     align-content: start;
     overflow: hidden;
     height: 110vh;
-    width: 110vh;
+    width: 100vh;
     padding-top: 2vh;
    
   }
