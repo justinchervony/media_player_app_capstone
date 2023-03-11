@@ -39,15 +39,19 @@ const HomePage = () => {
     }
   };
 
-  const getSelectedSong = async (song) => {
-    let response = await axios.get(`http://127.0.0.1:8000/api/songs/${song.id}`, {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
-    console.log("Current Song", response.data.audio_file_url)
-    setSelectedSong('http://127.0.0.1:8000/' + response.data.audio_file_url);
+  const getSelectedSong =  (song) => {
+    console.log("Current Song", song.audio_file_url)
+    setSelectedSong('http://127.0.0.1:8000/' + song.audio_file_url);
   }
+  // const getSelectedSong = async (song) => {
+  //   let response = await axios.get(`http://127.0.0.1:8000/api/songs/${song.id}`, {
+  //     headers: {
+  //       Authorization: "Bearer " + token,
+  //     },
+  //   });
+  //   console.log("Current Song", response.data.audio_file_url)
+  //   setSelectedSong('http://127.0.0.1:8000/' + response.data.audio_file_url);
+  // }
 
   function addNewSong(song){
     let tempSongs = [...songs, song];
