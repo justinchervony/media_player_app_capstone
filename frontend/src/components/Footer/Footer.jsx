@@ -10,7 +10,7 @@ const Footer = ({selectedSong}, {userSongCollection}) => {
   const [songs, setSongs] = useState([userSongCollection]);
   const [isPlaying, setIsPlaying] = useState(false);
   // const [currentSong, setCurrentSong] = useState([]);
-  const [currentSong, setCurrentSong] = useState('http://127.0.0.1:8000//media/audio_files/03_Africa.m4a');
+  const [currentSong, setCurrentSong] = useState('');
 
   const audioElement = useRef();
 
@@ -36,9 +36,9 @@ const Footer = ({selectedSong}, {userSongCollection}) => {
       {/* <audio ref={audioElement} controls>
         <source src={currentSong} type='audio/mpeg'></source>
       </audio> */}
-      <audio src={currentSong} ref={audioElement} crossOrigin="anonymous" />
+      <audio src={'http://127.0.0.1:8000/' + currentSong.audio_file_url} ref={audioElement} crossOrigin="anonymous" />
       {/* <audio src='http://127.0.0.1:8000//media/audio_files/03_Africa.m4a' ref={audioElement} /> */}
-      <Player isPlaying={isPlaying} setIsPlaying={setIsPlaying} audioElement={audioElement} />
+      <Player isPlaying={isPlaying} setIsPlaying={setIsPlaying} audioElement={audioElement} selectedSong={selectedSong} />
     </footer>
   );
 };

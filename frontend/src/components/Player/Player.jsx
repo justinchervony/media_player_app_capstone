@@ -20,7 +20,12 @@ const Player = (props) => {
     return (
         <div className='player_container'>
             <div className='title'>
-                <p>Current Song</p>
+                {props.selectedSong.title ? (
+                    <p>{props.selectedSong.title}</p>
+                )
+                : (
+                    <p>Current Song...</p>
+                )}
             </div>
             <div className='navigation'>
                 <div className='navigation_wrapper'>
